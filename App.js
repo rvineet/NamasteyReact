@@ -1,18 +1,39 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-
-const heading = React.createElement("h1", {id:"heading"}, "I am h1 using React")
-console.log(heading);
-
-//JSX ==> Transapiled before it reaches the JS using BABEL through Parcel
-//JSX ==> is html/xml like syntax
-//JSX ==> Baebel ==>React.createElement ==> ReactElement => JS OBJECT ==> HTML (render)
-const jsxHeading = (<h1 id="heading" className="heading">
-I am h1 using JSX
-</h1>)
-console.log(jsxHeading);
+//React Element
+const Title = () => (
+  <h1 id="heading" className="heading">
+    A Vineet King!
+  </h1>
+);
+// console.log(heading);
+// <React.Fragment> :-- Acts like an empty tag, can also be written as <> </>
+const number = 10000;
+const HeadingComponent = () => {
+  return (
+    <React.Fragment>
+    <div id="container">
+      {number}
+      {100 + 200}
+      {console.log("will this work too?!")}
+      <Title />
+      <Title></Title>
+      {Title()}
+      <h1 className="heading">Namastey React From Functional Component</h1>
+    </div>
+    <div id="container-2">
+      {number}
+      {console.log("will this work too?!")}
+      <Title />
+      <Title></Title>
+      {Title()}
+      <h1 className="heading">Namastey React From Functional Component</h1>
+    </div>
+    </React.Fragment>
+  );
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(jsxHeading)
-
+// root.render(heading)
+root.render(HeadingComponent());
