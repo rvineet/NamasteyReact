@@ -1,48 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-const styleCard = {
-  backgroundColor: "#f0f0f0",
-};
-const Heading = () => {
-  return (
-    <div className="header">
-      <div className="logo-container">
-        <img
-          className="logo"
-          src="https://icon-library.com/images/order-food-online-icon/order-food-online-icon-20.jpg"
-        />
-      </div>
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-const RestaurantCard = (props) => {
-  const { resData } = props;
-  return (
-    <div className="res-card" style={styleCard}>
-      <img
-        className="res-logo"
-        alt="res-logo"
-        src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${resData.cloudinaryImageId}`}
-      />
-      <h3>{resData.name}</h3>
-      <h4>{resData.cuisines.join(", ")}</h4>
-      <h4>{resData.avgRating} Stars</h4>
-      <h4>{resData.costForTwo}</h4>
-      {/* <h4>{resData.sla.deliveryTime} minutes</h4> */}
-    </div>
-  );
-};
-
 const resObj = [
   {
     info: {
@@ -53,7 +8,7 @@ const resObj = [
       areaName: "DLF Phase 3",
       costForTwo: "₹200 for two",
       cuisines: ["Bakery"],
-      avgRating: 4.1,
+      avgRating: 3.8,
       veg: true,
       feeDetails: {
         restaurantId: "640325",
@@ -250,7 +205,7 @@ const resObj = [
         "Desserts",
         "American",
       ],
-      avgRating: 4.1,
+      avgRating: 3.1,
       favourite: true,
       feeDetails: {
         restaurantId: "304086",
@@ -699,30 +654,4 @@ const resObj = [
   },
 ];
 
-const Body = () => {
-  return (
-    <div className="body">
-      <div className="search">Search</div>
-      <div className="res-container">
-      {resObj.map(res => {
-        console.log(res)
-        return <RestaurantCard key={res.info.id} resData={res.info} />
-      })}
-        
-        {/* <RestaurantCard resName="KFC" cuisine="Burger, Fast Food"/> */}
-      </div>
-    </div>
-  );
-};
-
-const AppLayout = () => {
-  return (
-    <div className="app">
-      <Heading />
-      <Body />
-    </div>
-  );
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
+export default resObj;
