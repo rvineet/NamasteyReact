@@ -1,12 +1,17 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 export const Body = () => {
   const [resList, setResList] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filteredRes, setFilteredRes] = useState([]);
 
+
+  //if no dependency array ==> useEffect called everytime component renders
+  //if dependency array is [ ] ==> useEffect is called on initial render(just once)
+  //if dependency array is [ searchText ] ==> useEffect will be called everytime searchText changes 
   useEffect(() => {
     fetchData();
   }, []);
@@ -32,7 +37,8 @@ export const Body = () => {
   };
   //conditional rendering
   // if (resList.length === 0) return <Shimmer />;
-  return resList.length === 0 ? (
+  console.log(filteredRes)
+  return resList?.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
@@ -79,7 +85,7 @@ export const Body = () => {
           {
             /* console.log(res); */
           }
-          return <RestaurantCard key={res.info.id} resData={res.info} />;
+          return <Link key={res.info.id} to={`/restaurant/${res.info.id}`}><RestaurantCard  resData={res.info}/></Link>;
           {
             /* return <RestaurantCard key={res.data.id} resData={res.data} />; */
           }
