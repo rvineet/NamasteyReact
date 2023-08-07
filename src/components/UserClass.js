@@ -16,12 +16,15 @@ class UserClass extends React.Component {
   }
   async componentDidMount() {
     console.log("child componentDidMount is called");
-    const data = await fetch("https://api.github.com/users/rvineet");
-    const json = await data.json();
-    this.setState({
-      userInfo: json,
-    });
-    console.log(json, "===json==");
+    // const data = await fetch("https://api.github.com/users/rvineet");
+    // const json = await data.json();
+    // this.setState({
+    //   userInfo: json,
+    // });
+    // console.log(json, "===json==");
+    this.timer = setInterval(()=>{
+        console.log("hey its an interval on every one sec")
+    },1000)
   }
 
   componentDidUpdate() {
@@ -29,6 +32,7 @@ class UserClass extends React.Component {
   }
 
   componentWillUnmount() {
+    clearInterval(this.timer);
     console.log("componentWillUnmount is called");
   }
   render() {
