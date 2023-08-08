@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 export const Body = () => {
   const [resList, setResList] = useState([]);
@@ -15,6 +16,9 @@ export const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const onlineStatus = useOnlineStatus()
+ 
 
   const fetchData = async () => {
     const data = await fetch(
@@ -38,6 +42,7 @@ export const Body = () => {
   //conditional rendering
   // if (resList.length === 0) return <Shimmer />;
   console.log(filteredRes)
+  if(onlineStatus === false) return <h1>Looks like you are offline! Please check your internet connection.</h1>
   return resList?.length === 0 ? (
     <Shimmer />
   ) : (
