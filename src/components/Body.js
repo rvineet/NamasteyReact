@@ -47,28 +47,31 @@ export const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
+      <div className="flex">
+      <div className="search m-4 p-4">
         <button
-          className="filter-btn"
+          className="m-4 px-4 py-2 bg-gray-100 rounded-lg"
           onClick={() => {
             // let filteredList = resList.filter((e) => e.data.avgRating > 4);
             let filteredList = resList.filter((e) => e.info.avgRating > 4.1);
             console.log(filteredList);
-            setResList(filteredList);
+            setFilteredRes(filteredList);
           }}
         >
           Top Rated Restaurants
         </button>
-        <div className="search">
+        </div>
+        <div className="search m-4 p-4">
           <input
             type="text"
-            className="search-box"
+            className="border border-solid border-black"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           ></input>
           <button
+          className="px-4 py-2 bg-green-100 m-4 rounded-lg"
             onClick={() => {
               console.log(resList);
               console.log(searchText);
@@ -85,7 +88,7 @@ export const Body = () => {
           </button>
         </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {filteredRes.map((res) => {
           {
             /* console.log(res); */

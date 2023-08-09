@@ -25,7 +25,7 @@ const AppLayout = () => {
   if (onlineStatus === false)
     return <h1>Hey, your internet broke our conection.😢</h1>;
   return (
-    <div className="app">
+    <div className="app w-auto">
       <Header />
       <Outlet />
     </div>

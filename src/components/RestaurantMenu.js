@@ -22,7 +22,7 @@ function RestaurantMenu() {
   //   setResInfo(json.data);
   //   console.log(resInfo?.cards[0]?.card?.card?.info?.name);
   // };
-  const data = useRestaurantMenu(resId);
+  // const data = useRestaurantMenu(resId);
 
   if (resInfo === null) return <Shimmer />;
 
