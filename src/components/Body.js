@@ -1,8 +1,9 @@
 import RestaurantCard, {withPromotedLabel}from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 export const Body = () => {
   const [resList, setResList] = useState([]);
@@ -19,7 +20,8 @@ export const Body = () => {
 
   const onlineStatus = useOnlineStatus()
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard); //higher order component
- 
+
+  const {loggedInUser, setUserName} = useContext(UserContext);
 
   const fetchData = async () => {
     const data = await fetch(
@@ -48,7 +50,7 @@ export const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="flex">
+      <div className="flex sm:flex-row">
         <div className="search m-4 p-4">
           <button
             className="m-4 px-4 py-2 bg-gray-100 rounded-lg"
@@ -87,6 +89,13 @@ export const Body = () => {
           >
             Search
           </button>
+        </div>
+        <div className="search m-4 p-4">
+        <label className="pr-2">UserName:- </label>
+         <input className="border border-black m-4 mt-5 px-2"
+          value={loggedInUser}
+          onChange={(e) => setUserName(e.target.value)}
+         />
         </div>
       </div>
       <div className="flex flex-wrap">
