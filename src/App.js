@@ -8,6 +8,7 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import useOnlineStatus from "./utils/useOnlineStatus";
+import { Provider } from "react-redux";
 // import Grocery from "./components/Grocery";
 // Chunking
 // Code Splitting
@@ -18,6 +19,8 @@ import useOnlineStatus from "./utils/useOnlineStatus";
 const Grocery = lazy(() => import("./components/Grocery"));
 const About = lazy(() => import("./components/About"));
 import UserContext from "./utils/UserContext";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 const AppLayout = () => {
   const onlineStatus = useOnlineStatus();
@@ -31,10 +34,12 @@ const AppLayout = () => {
     return <h1>Hey, your internet broke our conection.😢</h1>;
   return (
     <div className="app w-auto">
+    <Provider store={appStore} >
       <UserContext.Provider value={{ loggedInUser: userName , setUserName }}>
         <Header />
       <Outlet />
       </UserContext.Provider>
+      </Provider>
   
     </div>
   );
@@ -72,6 +77,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/Restaurant/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
     errorElement: <Error />,
